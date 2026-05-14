@@ -18,7 +18,7 @@
     "cp-i18n": "cpx \"tabbycat/locale/jsi18n/**/*.js\" tabbycat/static/jsi18n",
     "cp-jquery": "cpx node_modules/jquery/dist/jquery.js tabbycat/static/js/vendor",
     "cp-validate": "cpx node_modules/jquery-validation/dist/jquery.validate.js tabbycat/static/js/vendor",
-    "render-serve": "npm-run-all -p render-*",
+    "render-serve": "npm run render-server"
     "render-server": "python tabbycat/run-asgi.py",
     "render-worker": "python manage.py runworker notifications adjallocation venues",
     "docs": "sphinx-autobuild docs docs/_build/html --port 7999",
