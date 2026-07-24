@@ -15,6 +15,9 @@ python manage.py migrate --noinput
 echo "-----> Running dynamic preferences checks"
 python manage.py checkpreferences
 
+echo "-----> Creating DebSoc tournaments and rotating member credentials"
+python manage.py bootstrap_debsoc
+
 echo "-----> Running static asset compilation"
 npm install -g @vue/cli-service-global
 npm install

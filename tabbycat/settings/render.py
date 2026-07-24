@@ -73,6 +73,24 @@ CHANNEL_LAYERS = {
 }
 
 # ==============================================================================
+# Email
+# ==============================================================================
+
+# Use environment variables so SMTP credentials never enter source control.
+# For Gmail, EMAIL_HOST_PASSWORD must be an App Password, not the account password.
+if os.environ.get('EMAIL_HOST'):
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ['EMAIL_HOST']
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    # Google displays App Passwords in groups separated by spaces. The spaces
+    # are formatting only, so accept either the grouped or compact form.
+    EMAIL_HOST_PASSWORD = ''.join(os.environ['EMAIL_HOST_PASSWORD'].split())
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'true').lower() == 'true'
+    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+    SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+# ==============================================================================
 # Sentry
 # ==============================================================================
 

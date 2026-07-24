@@ -164,6 +164,57 @@ class BritishParliamentaryPreferences(PreferencesPreset):
         "<p>Current Standings: {{ URL }}</p>")
 
 
+class DebSocBritishParliamentaryPreferences(BritishParliamentaryPreferences):
+    """DebSoc's deployment-ready British Parliamentary configuration."""
+
+    name         = _("DebSoc British Parliamentary Rules")
+    description  = _("2 vs 2 vs 2 vs 2, one motion, DebSoc scoring, and "
+        "orallist-only team feedback.")
+    show_in_list = True
+
+    scoring__score_min                         = Decimal('60')
+    scoring__score_max                         = Decimal('83')
+    scoring__score_step                        = Decimal('1')
+    debate_rules__substantive_speakers         = 2
+    debate_rules__reply_scores_enabled         = False
+    # In Tabbycat, False means a single automatically assigned motion; True
+    # enables a choice between multiple motions on the ballot.
+    motions__enable_motions                    = False
+    motions__motion_vetoes_enabled             = False
+    feedback__adj_min_score                    = 1.0
+    feedback__adj_max_score                    = 10.0
+    feedback__adj_score_step                   = 0.5
+    feedback__feedback_paths                   = 'with-p-on-c'
+    feedback__feedback_from_teams              = 'orallist'
+
+
+class DebSocAsianParliamentaryPreferences(AustralsPreferences):
+    """DebSoc's deployment-ready Asian Parliamentary configuration."""
+
+    name         = _("DebSoc Asian Parliamentary Rules")
+    description  = _("3 vs 3 with replies, one motion, DebSoc scoring, and "
+        "team feedback on all adjudicators.")
+    show_in_list = True
+
+    scoring__score_min                         = Decimal('60')
+    scoring__score_max                         = Decimal('83')
+    scoring__score_step                        = Decimal('1')
+    scoring__reply_score_min                   = Decimal('30')
+    scoring__reply_score_max                   = Decimal('42')
+    scoring__reply_score_step                  = Decimal('0.5')
+    debate_rules__teams_in_debate              = 2
+    debate_rules__substantive_speakers         = 3
+    debate_rules__reply_scores_enabled         = True
+    debate_rules__side_names                   = 'gov-opp'
+    motions__enable_motions                    = False
+    motions__motion_vetoes_enabled             = False
+    feedback__adj_min_score                    = 1.0
+    feedback__adj_max_score                    = 10.0
+    feedback__adj_score_step                   = 0.5
+    feedback__feedback_paths                   = 'with-p-on-c'
+    feedback__feedback_from_teams              = 'all-adjs'
+
+
 class CanadianParliamentaryPreferences(PreferencesPreset):
     name         = _("Canadian Parliamentary Rules")
     show_in_list = True

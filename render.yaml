@@ -35,6 +35,20 @@ services:
         value: 4
       - key: TAB_DIRECTOR_EMAIL
         sync: false
+      - key: DEBSOC_MEMBERS_CSV_URL
+        value: "https://docs.google.com/spreadsheets/d/1HuvRJgz1w3Rs3HFhHgj99W3JhJJEUyDmTKo8tXzHNmc/export?format=csv"
+      - key: DEBSOC_EMAIL_DELAY
+        value: 1
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USE_TLS
+        value: true
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
       - key: TIME_ZONE
         sync: false
       - key: ON_RENDER
