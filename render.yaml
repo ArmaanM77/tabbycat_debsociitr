@@ -1,9 +1,3 @@
-databases:
-  - name: tabbycat_database
-    databaseName: tabbycat
-    user: tabbycat
-    plan: free
-
 services:
   - type: web
     name: tabbycat_website
@@ -15,9 +9,7 @@ services:
     startCommand: "npm run render-serve"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: tabbycat_database
-          property: connectionString
+        sync: false # Managed by the guarded Render rotation workflow
       - key: REDIS_HOST
         fromService:
           type: redis
