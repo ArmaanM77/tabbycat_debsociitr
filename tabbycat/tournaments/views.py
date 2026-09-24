@@ -10,6 +10,7 @@ from django.shortcuts import redirect, resolve_url
 from django.utils.html import format_html_join
 from django.utils.timezone import get_current_timezone_name
 from django.utils.translation import gettext_lazy as _
+from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, FormView, UpdateView
 
@@ -58,6 +59,21 @@ class PublicSiteIndexView(WarnAboutDatabaseUseMixin, WarnAboutLegacySendgridConf
         kwargs['tournaments'] = Tournament.objects.filter(active=True)
         kwargs['inactive'] = Tournament.objects.filter(active=False)
         return super().get_context_data(**kwargs)
+
+
+class LatestDebSocTournamentRedirectView(View):
+    """Redirect a stable APD/BPD URL to the newest active monthly tournament."""
+
+    prefix = None
+
+    def get(self, request, *args, **kwargs):
+        tournament = Tournament.objects.filter(
+            active=True,
+            slug__startswith=f'{self.prefix}-',
+        ).order_by('-id').first()
+        if tournament is None:
+            return redirect('tabbycat-index')
+        return redirect_tournament('tournament-public-index', tournament)
 
 
 class TournamentPublicHomeView(CacheMixin, TournamentMixin, TemplateView):

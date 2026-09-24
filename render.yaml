@@ -8,6 +8,7 @@ services:
   - type: web
     name: tabbycat_website
     env: python
+    autoDeployTrigger: off
     plan: free
     region: oregon
     buildCommand: "./bin/render-compile.sh"

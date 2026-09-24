@@ -33,6 +33,12 @@ urlpatterns = [
     path('load-demo/',
         LoadDemoView.as_view(),
         name='load-demo'),
+    path('apd/',
+        tournaments.views.LatestDebSocTournamentRedirectView.as_view(prefix='apd'),
+        name='latest-apd-tournament'),
+    path('bpd/',
+        tournaments.views.LatestDebSocTournamentRedirectView.as_view(prefix='bpd'),
+        name='latest-bpd-tournament'),
 
     # Top Level Pages
     path('style/',
