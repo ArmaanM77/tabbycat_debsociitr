@@ -171,6 +171,8 @@ class DebSocBritishParliamentaryPreferences(BritishParliamentaryPreferences):
     description  = _("2 vs 2 vs 2 vs 2, one motion, DebSoc scoring, and "
         "orallist-only team feedback.")
     show_in_list = True
+    data_entry__participant_ballots            = 'private-urls'
+    data_entry__participant_feedback           = 'private-urls'
 
     scoring__score_min                         = Decimal('60')
     scoring__score_max                         = Decimal('83')
@@ -195,6 +197,11 @@ class DebSocAsianParliamentaryPreferences(AustralsPreferences):
     description  = _("3 vs 3 with replies, one motion, DebSoc scoring, and "
         "team feedback on all adjudicators.")
     show_in_list = True
+    data_entry__participant_ballots            = 'private-urls'
+    data_entry__participant_feedback           = 'private-urls'
+    data_entry__individual_ballots             = True
+    debate_rules__ballots_per_debate_prelim     = 'per-adj'
+    debate_rules__ballots_per_debate_elim       = 'per-adj'
 
     scoring__score_min                         = Decimal('60')
     scoring__score_max                         = Decimal('83')
